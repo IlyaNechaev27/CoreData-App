@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BD9CEDE027E77F13001B2A1A /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9CEDDF27E77F13001B2A1A /* TaskViewController.swift */; };
 		BDD720B427E6214000353811 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD720B327E6214000353811 /* AppDelegate.swift */; };
 		BDD720B827E6214000353811 /* TaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD720B727E6214000353811 /* TaskListViewController.swift */; };
 		BDD720BE27E6214000353811 /* CoreData_App.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BDD720BC27E6214000353811 /* CoreData_App.xcdatamodeld */; };
@@ -14,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BD9CEDDF27E77F13001B2A1A /* TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
 		BDD720B027E6214000353811 /* CoreData App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CoreData App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDD720B327E6214000353811 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BDD720B727E6214000353811 /* TaskListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListViewController.swift; sourceTree = "<group>"; };
@@ -54,6 +56,7 @@
 			children = (
 				BDD720B327E6214000353811 /* AppDelegate.swift */,
 				BDD720B727E6214000353811 /* TaskListViewController.swift */,
+				BD9CEDDF27E77F13001B2A1A /* TaskViewController.swift */,
 				BDD720BF27E6214100353811 /* Assets.xcassets */,
 				BDD720C427E6214100353811 /* Info.plist */,
 				BDD720BC27E6214000353811 /* CoreData_App.xcdatamodeld */,
@@ -131,6 +134,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BDD720BE27E6214000353811 /* CoreData_App.xcdatamodeld in Sources */,
+				BD9CEDE027E77F13001B2A1A /* TaskViewController.swift in Sources */,
 				BDD720B827E6214000353811 /* TaskListViewController.swift in Sources */,
 				BDD720B427E6214000353811 /* AppDelegate.swift in Sources */,
 			);
