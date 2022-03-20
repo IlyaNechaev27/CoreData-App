@@ -33,10 +33,24 @@ class TaskViewController: UIViewController {
         return button
     }()
     
+    private lazy var cancelButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = UIColor.red
+        
+        button.setTitle("Cancel", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 5
+
+        button.addTarget(self, action: #selector(cancel), for: .touchUpInside)
+        
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        setupSubviews(textField, saveButton)
+        setupSubviews(textField, saveButton, cancelButton)
         setConstraints()
     }
     
@@ -49,6 +63,7 @@ class TaskViewController: UIViewController {
     private func setConstraints() {
         textField.translatesAutoresizingMaskIntoConstraints = false
         saveButton.translatesAutoresizingMaskIntoConstraints = false
+        cancelButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             textField.topAnchor.constraint(equalTo: view.topAnchor, constant: 80),
@@ -61,10 +76,20 @@ class TaskViewController: UIViewController {
             saveButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
             saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40)
         ])
+        
+        NSLayoutConstraint.activate([
+            cancelButton.topAnchor.constraint(equalTo: saveButton.bottomAnchor, constant: 20),
+            cancelButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
+            cancelButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40)
+        ])
     }
     
     @objc private func save() {
         
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @objc private func cancel() {
         dismiss(animated: true, completion: nil)
     }
 }
