@@ -16,36 +16,23 @@ class TaskViewController: UIViewController {
         return textField
     }()
     
-    private lazy var saveButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = UIColor(
-            red: 21/255,
-            green: 101/255,
-            blue: 192/255,
-            alpha: 1
-        )
-        button.setTitle("Save Task", for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 5
-        button.addTarget(self, action: #selector(save), for: .touchUpInside)
-        
-        return button
-    }()
+    private lazy var saveButton = CustomButton(
+        color: UIColor(
+        red: 21/255,
+        green: 101/255,
+        blue: 192/255,
+        alpha: 194/255),
+        titleString: "Save Task",
+        action: #selector(save),
+        target: self
+    )
     
-    private lazy var cancelButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = UIColor.red
-        
-        button.setTitle("Cancel", for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 5
-
-        button.addTarget(self, action: #selector(cancel), for: .touchUpInside)
-        
-        return button
-    }()
+    private lazy var cancelButton = CustomButton(
+        color: .systemRed,
+        titleString: "Cancel",
+        action: #selector(cancel),
+        target: self
+    )
     
     override func viewDidLoad() {
         super.viewDidLoad()
