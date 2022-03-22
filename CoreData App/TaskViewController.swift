@@ -9,9 +9,10 @@ import UIKit
 import CoreData
 
 class TaskViewController: UIViewController {
+    public var delegate: TaskViewControllerDelegate?
+
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
-    
+        
     private lazy var newTaskTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "New Task"
@@ -80,6 +81,7 @@ class TaskViewController: UIViewController {
         guard let task = NSManagedObject(entity: entityDescription, insertInto: context) as? Task else { return }
         if newTaskTextField.text != "" {
             task.title = newTaskTextField.text
+            delegate?.reloadData()
         }
         
         if context.hasChanges {
@@ -89,6 +91,7 @@ class TaskViewController: UIViewController {
                 print(error)
             }
         }
+        
         dismiss(animated: true, completion: nil)
     }
     

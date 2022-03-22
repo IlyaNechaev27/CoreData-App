@@ -55,6 +55,7 @@ class TaskListViewController: UITableViewController {
     
     @objc private func addNewTask() {
         let taskVC = TaskViewController()
+        taskVC.delegate = self
         present(taskVC, animated: true)
     }
     
@@ -69,17 +70,15 @@ class TaskListViewController: UITableViewController {
     }
 }
 
-<<<<<<< HEAD
 // MARK: TaskViewControllerDelegate
 extension TaskListViewController: TaskViewControllerDelegate {
     func reloadData() {
+        fetchData()
         tableView.reloadData()
     }
     
 }
 
-
-=======
 // MARK: - UITableViewDataSource
 extension TaskListViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -97,4 +96,4 @@ extension TaskListViewController {
         return cell
     }
 }
->>>>>>> CoreData
+
