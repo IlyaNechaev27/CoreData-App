@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol TaskViewControllerDelegate {
+    func reloadData()
+}
+
 class TaskListViewController: UITableViewController {
 
     override func viewDidLoad() {
@@ -47,4 +51,13 @@ class TaskListViewController: UITableViewController {
         present(taskVC, animated: true)
     }
 }
+
+// MARK: TaskViewControllerDelegate
+extension TaskListViewController: TaskViewControllerDelegate {
+    func reloadData() {
+        tableView.reloadData()
+    }
+    
+}
+
 
