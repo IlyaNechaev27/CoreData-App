@@ -6,9 +6,13 @@
 //
 
 import UIKit
+import CoreData
 
 class TaskViewController: UIViewController {
-    private lazy var textField: UITextField = {
+    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    
+    private lazy var newTaskTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "New Task"
         textField.borderStyle = .roundedRect
@@ -37,7 +41,7 @@ class TaskViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        setupSubviews(textField, saveButton, cancelButton)
+        setupSubviews(newTaskTextField, saveButton, cancelButton)
         setConstraints()
     }
     
@@ -48,18 +52,18 @@ class TaskViewController: UIViewController {
     }
     
     private func setConstraints() {
-        textField.translatesAutoresizingMaskIntoConstraints = false
+        newTaskTextField.translatesAutoresizingMaskIntoConstraints = false
         saveButton.translatesAutoresizingMaskIntoConstraints = false
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            textField.topAnchor.constraint(equalTo: view.topAnchor, constant: 80),
-            textField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
-            textField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40)
+            newTaskTextField.topAnchor.constraint(equalTo: view.topAnchor, constant: 80),
+            newTaskTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
+            newTaskTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40)
         ])
         
         NSLayoutConstraint.activate([
-            saveButton.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 20),
+            saveButton.topAnchor.constraint(equalTo: newTaskTextField.bottomAnchor, constant: 20),
             saveButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
             saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40)
         ])
@@ -72,7 +76,19 @@ class TaskViewController: UIViewController {
     }
     
     @objc private func save() {
+        guard let entityDescription = NSEntityDescription.entity(forEntityName: "Task", in: context) else { return }
+        guard let task = NSManagedObject(entity: entityDescription, insertInto: context) as? Task else { return }
+        if newTaskTextField.text != "" {
+            task.title = newTaskTextField.text
+        }
         
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch let error {
+                print(error)
+            }
+        }
         dismiss(animated: true, completion: nil)
     }
     
